@@ -1,8 +1,8 @@
-FROM hashicorp/terraform:0.11.14
+FROM hashicorp/terraform:0.12.3
 
-LABEL "com.github.actions.name"="terraform plan"
-LABEL "com.github.actions.description"="Run terraform plan"
-LABEL "com.github.actions.icon"="book-open"
+LABEL "com.github.actions.name"="terraform apply"
+LABEL "com.github.actions.description"="Run Terraform Apply"
+LABEL "com.github.actions.icon"="play-circle"
 LABEL "com.github.actions.color"="purple"
 
 LABEL "repository"="https://github.com/hashicorp/terraform-github-actions"
