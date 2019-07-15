@@ -9,6 +9,9 @@ echo "$UNFMT_FILES"
 set -e
 
 if [ $SUCCESS -eq 0 ]; then
+    PAYLOAD=$(echo '{}' | jq --arg body "No need for \`terraform fmt\`. All good!" '.body = $body')
+    COMMENTS_URL=$(cat /github/workflow/event.json | jq -r .pull_request.comments_url)
+    curl -s -S -H "Authorization: token $GITHUB_TOKEN" --header "Content-Type: application/json" --data "$PAYLOAD" "$COMMENTS_URL" > /dev/null
     exit 0
 fi
 
@@ -30,7 +33,9 @@ $FILE_DIFF
 "
 done
 
-COMMENT="#### \`terraform fmt\` Failed
+COMMENT="***Terraform configuration file(s) are not formatted well!***  
+Please execute \`terraform fmt\` then commit and push again!  
+
 $FMT_OUTPUT
 "
 PAYLOAD=$(echo '{}' | jq --arg body "$COMMENT" '.body = $body')

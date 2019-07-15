@@ -52,7 +52,7 @@ fi
 COMMENT=""
 if [ $SUCCESS -ne 0 ]; then
     OUTPUT=$(wrap "$OUTPUT")
-    COMMENT="#### \`terraform plan\` Failed
+    COMMENT="\`terraform plan\` Failed!
 $OUTPUT"
 else
     # Remove "Refreshing state..." lines by only keeping output after the
@@ -69,7 +69,7 @@ else
     # Call wrap to optionally wrap our output in a collapsible markdown section.
     OUTPUT=$(wrap "$OUTPUT")
 
-    COMMENT="#### \`terraform plan\` Success
+    COMMENT="\`terraform plan\` Success!
 $OUTPUT"
 fi
 
